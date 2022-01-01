@@ -1,0 +1,29 @@
+.gri{ color: #ECEFED; }
+.black{ color: #0A0908; }
+.green{ color: #B2FFD6; }
+
+body {
+	background-color: #ECEFED ;
+}
+
+.footer {
+	width: 100%;
+	height: 300px;
+	background-color: #0A0908;
+    position: absolute;
+}
+
+.global-message {
+	width: 100%;
+	height: 56px;
+	background-color: #999;
+	position: fixed;
+	top: -56px;
+	left: 0;
+	padding: 17px 10px;
+	text-align: center;
+	z-index: 9999;
+	color: white;
+
+	transition: top 10ms linear;
+}
