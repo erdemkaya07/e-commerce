@@ -16,7 +16,10 @@
             <div class="clearfix"></div><hr>
 
             <h4 class="float-left"><b><?=$data['product']['urun_fiyat'] ?></b></h4>
-            <button class="btn btn-outline-dark float-right">Shoppingbag</button>
+
+            <?php if (isset($_SESSION['kullanici'])): ?>
+            <a href="/basket/addproduct/<?=$data['product']['urun_id'] ?>" class="btn btn-outline-dark float-right">Shoppingbag</a>
+            <?php endif; ?>
         </div>
         
     </div>

@@ -16,6 +16,9 @@ App::get('/product/detail/([\d]+)', false);
 
 //Basket Model
 App::get('/basket/index', false);
+App::get('/basket/step1', false);
+App::get('/basket/product/([\d]+)', false);
+App::get('/basket/step2', false);
 
 
 ?>

@@ -1,3 +1,8 @@
+<?php
+    $basketModel = new basketModel();
+    $totalProduct = $basketModel->getTotalProduct();
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
   <div class="container-fluid">
@@ -15,6 +20,10 @@
           <a class="nav-link" href="#">Contact</a>
         </li>
           <?php if(isset($_SESSION['kullanici'])): ?>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="/basket/step1">Basket (<?=$totalProduct?>)</a>
+              </li>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <?=$_SESSION['kullanici']['kullanici_adi_soyadi']?>
