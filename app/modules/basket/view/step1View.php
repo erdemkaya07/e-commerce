@@ -39,7 +39,7 @@
                     <div class="clearfix"></div><hr>
 
                     <small class="float-left">Total price</small>
-                    <small class="float-right"><b><?=number_format($totalRate, 2, "," , ".")?></b></small>
+                    <small class="float-right"><b><?=number_format($data['totalRate'], 2, "," , ".")?></b></small>
                     <div class="clearfix"></div><hr>
 
 
@@ -47,4 +47,6 @@
             </div>
         </div>
     </div>
+    <a href="/basket/step2" class="btn-outline-dark float-right">Next</a>
+    <div class="clearfix"></div><hr>
 </div>

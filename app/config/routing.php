@@ -19,6 +19,7 @@ App::get('/basket/index', false);
 App::get('/basket/step1', false);
 App::get('/basket/product/([\d]+)', false);
 App::get('/basket/step2', false);
-
-
+App::post('/basket/newaddress', false);
+App::post('/basket/step3', false);
+App::post('/basket/saveorder', false);
 ?>
