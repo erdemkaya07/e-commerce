@@ -2,7 +2,7 @@
 
 class App {
 
-    protected static $routes = [];
+    protected static $routes = array();
     protected static $config;
 
     protected $activePath;
@@ -21,7 +21,6 @@ class App {
             http_response_code(404);
             echo "404 not found";
         };
-
     }
 
     public static function get($path, $auth = false, $callback = null)
@@ -80,6 +79,8 @@ class App {
                         if(method_exists($class, $action))
                         {
                             array_shift($params);
+
+                            //var_dump(call_user_func_array([$class, $action], array_values($params)));
 
                             return call_user_func_array([$class, $action], array_values($params));
                         }

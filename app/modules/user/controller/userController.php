@@ -1,16 +1,14 @@
-<?php 
+<?php
 
+class userController extends Controller {
 
-class userController extends Controller implements FrontController {
+    public function indexAction()
+    {
+        $data = array();
 
-public function indexAction()
-{
-	$data = array();
-	$this->renderLayout("main", "user", "index", $data);
+        $this->RenderLayout("main", "user", "index", $data);
+    }
+
 }
 
-}
-
-
-
- ?>
+?>

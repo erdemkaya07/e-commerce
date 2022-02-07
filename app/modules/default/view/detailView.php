@@ -1,1 +1,1 @@
-detailView
+Detay sayfası View Görünümü

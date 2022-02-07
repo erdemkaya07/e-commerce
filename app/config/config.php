@@ -1,30 +1,30 @@
 <?php
 
-define('APP_DIR' , '../app');
+define('APP_DIR', '../app');
 define('CORE', APP_DIR.'/core');
 define('CONFIG', APP_DIR.'/config');
 
-define("host", "localhost");
-define("user", "root");
-define("pass", "");
-define("db", "eticarett");
+define("HOST", "localhost");
+define("USER", "root");
+define("PASS", "");
+define("DBNAME", "ticaret");
 
-//ini_set("display_errors", "Off");
+ini_set("display_errors", "Off");
 
 global $config;
 
 $config = array(
-	"authentication" => array(
-		"auth_urls" => array(
-			"default"  => "/default/login",
-			"user"  => "/default/login",
-		),
-		"auth_files" => array(
-			"default" => "kullanici",
-			"panel" => "admin",
-		)
-	),
-	"debug" => "no"
+    "authentication" => array(
+        "auth_urls" => array(
+            "default" => "/default/login",
+            "panel"    => "/panel/login",
+        ),
+        "auth_files" => array(
+            "default" => "kullanici",
+            "panel"   => "admin",
+        )
+    ),
+    "debug" => "yes"
 );
 
 require_once CORE."/Model.php";
@@ -36,33 +36,33 @@ require_once APP_DIR."/vendor/autoload.php";
 
 
 spl_autoload_register(function ($class_name){
-		$module = explode("Model", $class_name);
-		if(file_exists($file = APP_DIR."/modules/{$module[0]}/model/{$class_name}.php"))
-		require_once $file;
+    $module = explode("Model", $class_name);
+    if(file_exists($file = APP_DIR."/modules/{$module[0]}/model/{$class_name}.php"))
+        require_once $file;
 
-		if(file_exists($file = CORE."/interface/{$class_name}.php"))
-		require_once $file;
-
+    if(file_exists($file = CORE."/interface/{$class_name}.php"))
+        require_once $file;
 });
+
 
 function fatal_handler()
 {
-	global $config;
+    global $config;
 
-	$error = error_get_last();
-	if($error != NULL){
-		if($config['debug'] == "yes")
-		{
-			var_dump($error);
-		}
-		elseif($config['debug'] == "no" && $error['type'] != 8)
-		{
-			echo "System error!";
-		}
-
-	}
+    $error = error_get_last();
+    if($error != NULL)
+    {
+        if($config['debug'] == "yes")
+        {
+            var_dump($error);
+        }
+        elseif($config['debug'] == "no" && $error['type'] != 8192)
+        {
+            echo "<h3 style='text-align: center; color:red'>Sistemsel Hata!</h3>";
+        }
+    }
 }
 
 register_shutdown_function("fatal_handler");
 
- ?>
+?>

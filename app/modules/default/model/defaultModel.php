@@ -1,25 +1,26 @@
-<?php 
+<?php
 
-class defaultModel extends model {
+class defaultModel extends Model {
 
-	public function registerSaveModel()
+    public function registersaveModel()
     {
-        if(strlen($_POST['kullanici_sifre']) < 6 || strlen($_POST['kullanici_sifre_tekrar']) <6)
+
+        if(strlen($_POST['kullanici_sifre']) < 6 || strlen($_POST['kullanici_sifre_tekrar']) < 6)
         {
-            return "Minimum 6 chahcter!";
+            return "Şifre uzunluğu 6 karakterden Kısa olamaz";
         }
 
         if($_POST['kullanici_sifre'] != $_POST['kullanici_sifre_tekrar'])
         {
-            return "Not same password!";
+            return "Şifreler uyuşmuyor...";
         }
 
         $this->db->where("kullanici_mail", $_POST['kullanici_mail']);
-        $userDb = $this->db->getOne("kullanici");
+        $kullanici = $this->db->getOne("kullanici");
 
-        if(@count($userDb)>0)
+        if(@count($kullanici)>0)
         {
-            return "Try another e-mail";
+            return "Bu mail adresiyle daha önce kayıt olunmuş!";
         }
 
         $insert = array();
@@ -29,31 +30,39 @@ class defaultModel extends model {
         $insert['kullanici_sifre']          = md5($_POST['kullanici_sifre']);
         $insert['kullanici_kayit_tarihi']   = date("Y-m-d H:i:s");
 
-        if ($this->db->insert("kullanici", $insert)){
-            return "Success!";
+        if($this->db->insert("kullanici", $insert)){
+            return "Kayıt Başarılı";
         }
+
     }
 
     public function getLoginModel()
     {
+
         $this->db->where("(kullanici_mail = ? OR kullanici_adi = ?)", array($_POST['kullanici'], $_POST['kullanici']));
         $this->db->where("kullanici_sifre", md5($_POST['kullanici_sifre']));
-        $userDb = $this->db->getOne("kullanici");
+        $kullanici = $this->db->getOne("kullanici");
 
-        if (isset($userDb['kullanici_id'])) {
-            $_SESSION['kullanici'] = $userDb;
+        if(isset($kullanici['kullanici_id'])){
+
+            $_SESSION['kullanici'] = $kullanici;
+
             return "OK";
+
         }
-        return "Not found user";
+
+        return "Kullanıcı Bulunamadı!";
+
     }
 
     public function getProductModel()
     {
-        return $this->db-get("urun");
+        $this->db->groupBy("urun.urun_id");
+        $this->db->join("urun_resim", "urun_resim.urun_id = urun.urun_id");
+        return $this->db->get("urun");
     }
-
-
 
 }
 
- ?>
+
+?>

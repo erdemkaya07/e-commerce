@@ -1,1 +1,6 @@
-indexView
+<?php
+
+
+echo "User İndex Sayfası";
+
+?>

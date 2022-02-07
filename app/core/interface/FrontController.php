@@ -1,10 +1,5 @@
-<?php 
+<?php
 
 interface FrontController {
-	public function indexAction($param);
-
+    public function indexAction($param);
 }
-
-
-
- ?>

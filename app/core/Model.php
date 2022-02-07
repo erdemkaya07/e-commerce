@@ -1,21 +1,17 @@
-<?php 
+<?php
 
-class Model{
-
-	public $db;
+class Model {
 
 
-	public function __construct()
-	{
-		$this->db = new MysqliDb (host, user, pass, db);
-	}
+    public $db;
 
+
+    public function __construct()
+    {
+        $this->db = new MysqliDb (HOST, USER, PASS, DBNAME);
+    }
 
 
 }
 
-
-
-
-
- ?>
+?>

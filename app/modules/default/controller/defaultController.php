@@ -1,9 +1,10 @@
 <?php
 
-    class defaultController extends Controller implements FrontController {
+    class defaultController extends Controller implements FrontController{
 
         public function indexAction($param = null)
         {
+
             $data = array();
             $defaultModel = new defaultModel();
             $data['products'] = $defaultModel->getProductModel();
@@ -21,36 +22,43 @@
         public function loginAction()
         {
             $data = array();
-            if(isset($_POST['kullanici']) && isset($_POST['kullanici_sifre'])) {
+
+            if(isset($_POST['kullanici']) && isset($_POST['kullanici_sifre']))
+            {
                 $defaultModel = new defaultModel();
                 $result = $defaultModel->getLoginModel();
 
                 if($result == "OK"){
                     Controller::redirect("/default/index");
-                } else {
+                }
+                else{
                     $data['msg'] = $result;
                 }
             }
+
             $this->RenderLayout("main", "default", "login", $data);
         }
 
-        public function logOutAction()
+        public function logoutAction()
         {
             session_destroy();
+
             Controller::redirect("/default/index");
         }
 
         public function registerAction()
         {
+
             $data = array();
             $this->RenderLayout("main", "default", "register", $data);
         }
 
-        public function registerSaveAction()
+        public function registersaveAction()
         {
             $data = array();
             $defaultModel = new defaultModel();
-            $data['msg'] = $defaultModel->registerSaveModel();
+            $data['msg'] = $defaultModel->registersaveModel();
+
             $this->RenderLayout("main", "default", "register", $data);
         }
 
